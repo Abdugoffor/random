@@ -11,22 +11,17 @@ class ClintController extends Controller
     public function index()
     {
         $date = Carbon::today()->subDays(7);
-
         $models = Clint::where('active', 1)->where('created_at', '>=', $date)
             ->inRandomOrder()->limit(1)->groupBy('tel')->selectRaw('count(*) as total, tel')
             ->having('total', '>=', 2)
             ->first();
-
-        $winners = Clint::where('active', 2)->where('created_at', '>=', $date)
-            ->groupBy('tel')->selectRaw('count(*) as total, tel')->get();
-
-        return view('welcome', ['models' => $models, 'winners' => $winners]);
+        return view('welcome', ['models' => $models]);
     }
     public function active($tel)
     {
         $date = Carbon::today()->subDays(7);
-        $model = Clint::where('active', 2)->where('tel', $tel)
-            ->where('created_at', '>=', $date)->update(['active' => 1]);
+        $model = Clint::where('active', 1)->where('tel', $tel)
+            ->where('created_at', '>=', $date)->update(['active' => 2]);
 
         return redirect()->back();
     }
