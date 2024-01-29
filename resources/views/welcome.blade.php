@@ -1,7 +1,7 @@
 @extends('layout')
 @section('hed')
     <div class="pricing-header p-0 pb-md-0 mx-auto text-center">
-        <a href="/" class="btn btn-primary">Random</a>
+        <a href="/" class="btn btn-primary">Случайный</a>
     </div>
 @endsection
 @section('con')
@@ -9,9 +9,9 @@
         <table class="table text-center">
             <thead>
                 <tr>
-                    <th style="width: 22%;">Tel</th>
-                    <th style="width: 22%;">Soni</th>
-                    <th style="width: 22%;">Options</th>
+                    <th style="width: 22%;">Телефон</th>
+                    <th style="width: 22%;">Количество</th>
+                    <th style="width: 22%;">Функция</th>
                 </tr>
             </thead>
 
@@ -32,9 +32,9 @@
                                 <b id="p_num"><span></span></b>
                             </div>
                         </th>
-                        <th scope="row" class="text-center">{{ $models->total }} Marta</th>
+                        <th scope="row" class="text-center">{{ $models->total }} раза</th>
                         <th scope="row" class="text-center">
-                            <a href="{{ route('active', $models->tel) }}" class="btn btn-primary">Acite</a>
+                            <a href="{{ route('active', $models->tel) }}" class="btn btn-primary">Актив</a>
                         </th>
                     </tr>
                 @else

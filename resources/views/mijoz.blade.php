@@ -1,7 +1,7 @@
 @extends('layout')
 @section('hed')
     <div class="pricing-header p-0 pb-md-0 mx-auto text-center">
-        <h3 class="">Mijozlar</h3>
+        <h3 class="">Клиенты</h3>
     </div>
 @endsection
 @section('con')
@@ -9,9 +9,9 @@
         @csrf
         <div class="input-group">
             {{-- <span class="input-group-text">Mijov Nomi va Telefoni</span> --}}
-            <input type="text" name="name" aria-label="First name" placeholder="Name" class="form-control">
-            <input type="number" name="tel" min="100000000" max="999999999" aria-label="Last name" placeholder="Tel : 94 105 04 05" class="form-control">
-            <input type="submit" name="ok" value="Saqlash" aria-label="Last name" class="btn btn-primary">
+            <input type="text" name="name" aria-label="First name" placeholder="Имя" class="form-control">
+            <input type="number" name="tel" min="100000000" max="999999999" aria-label="Last name" placeholder="Телефон : 94 105 04 05" class="form-control">
+            <input type="submit" name="ok" value="Сохранять" aria-label="Last name" class="btn btn-primary">
         </div>
     </form>
     <div class="table-responsive">
@@ -19,10 +19,10 @@
             <thead>
                 <tr>
                     <th style="width: 10%;">#</th>
-                    <th style="width: 22%;">Name</th>
-                    <th style="width: 22%;">Tel</th>
-                    <th style="width: 22%;">Time</th>
-                    <th style="width: 22%;">Delete</th>
+                    <th style="width: 22%;">Имя</th>
+                    <th style="width: 22%;">Телефон</th>
+                    <th style="width: 22%;">Время</th>
+                    <th style="width: 22%;">Удалить</th>
                 </tr>
             </thead>
 
@@ -36,7 +36,7 @@
                         <td scope="row" class="text-center">
                             <form action="{{ route('delete', $model->id) }}" method="post">
                                 @csrf
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-danger">Удалить</button>
                             </form>
                         </td>
                     </tr>
