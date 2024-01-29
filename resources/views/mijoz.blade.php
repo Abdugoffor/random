@@ -5,12 +5,20 @@
     </div>
 @endsection
 @section('con')
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger">
+                <span class="font-weight-semibold">{{ $error }}!</span>
+            </div>
+        @endforeach
+    @endif
     <form action="{{ route('mijozadd') }}" method="post">
         @csrf
         <div class="input-group">
             {{-- <span class="input-group-text">Mijov Nomi va Telefoni</span> --}}
             <input type="text" name="name" aria-label="First name" placeholder="Имя" class="form-control">
-            <input type="number" name="tel" min="100000000" max="999999999" aria-label="Last name" placeholder="Телефон : 94 105 04 05" class="form-control">
+            <input type="number" name="tel" aria-label="Last name"
+                placeholder="Телефон : 94 105 04 05" class="form-control">
             <input type="submit" name="ok" value="Сохранять" aria-label="Last name" class="btn btn-primary">
         </div>
     </form>

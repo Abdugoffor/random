@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClientStoreRequest;
 use App\Models\Clint;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -39,12 +40,8 @@ class ClintController extends Controller
         $models = Clint::orderBy('id', 'DESC')->paginate(10);
         return view('mijoz', ['models' => $models]);
     }
-    public function mijozadd(Request $request)
+    public function mijozadd(ClientStoreRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'tel' => 'required',
-        ]);
         $model = new Clint();
         $model->name = $request->name;
         $model->tel = $request->tel;
