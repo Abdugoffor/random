@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClintController;
-use App\Http\Livewire\Mijoz;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +15,25 @@ use App\Http\Livewire\Mijoz;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/', [ClintController::class, 'index'])->name('index');
+    Route::get('/mijoz', [ClintController::class, 'mijoz'])->name('mijoz');
+    Route::get('/active/{tel}', [ClintController::class, 'active'])->name('active');
+    Route::get('/winners', [ClintController::class, 'winners'])->name('winners');
+    Route::post('/mijozadd', [ClintController::class, 'mijozadd'])->name('mijozadd');
+    Route::post('/delete/{id}', [ClintController::class, 'delete'])->name('delete');
 });
 
-Route::get('/',[ClintController::class,'index'])->name('index');
-Route::get('/mijoz',[ClintController::class,'mijoz'])->name('mijoz');
-Route::get('/active/{tel}',[ClintController::class,'active'])->name('active');
-Route::get('/winners',[ClintController::class,'winners'])->name('winners');
-Route::post('/mijozadd',[ClintController::class,'mijozadd'])->name('mijozadd');
-Route::post('/delete/{id}',[ClintController::class,'delete'])->name('delete');
-// Route::get('/mijoz',[Mijoz::class])->name('mijoz');
+require __DIR__ . '/auth.php';

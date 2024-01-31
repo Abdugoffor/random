@@ -16,7 +16,7 @@ class ClintController extends Controller
             ->inRandomOrder()->limit(1)->groupBy('tel')->selectRaw('count(*) as total, tel')
             ->having('total', '>=', 2)
             ->first();
-        return view('welcome', ['models' => $models]);
+        return view('index', ['models' => $models]);
     }
     public function active($tel)
     {
