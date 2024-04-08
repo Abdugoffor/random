@@ -1,8 +1,9 @@
 <?php
-
 use App\Http\Controllers\ClintController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,10 +24,22 @@ use Illuminate\Support\Facades\Route;
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/loginPage', [AuthController::class, 'loginPage'])->name('loginPage');
+
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/logaut', [AuthController::class, 'logaut'])->name('logaut');
+    Route::get('/edit', [AuthController::class, 'edit'])->name('edit');
+    Route::post('/editLogin', [AuthController::class, 'editLogin'])->name('editLogin');
+
+    Route::get('/artisan', function () {
+
+        Artisan::call('optimize');
+
+        Artisan::call('config:clear');
+
+        return redirect('/product');
+    });
 
     Route::get('/', [ClintController::class, 'index'])->name('index');
     Route::get('/mijoz', [ClintController::class, 'mijoz'])->name('mijoz');
@@ -35,5 +48,3 @@ Route::middleware('auth')->group(function () {
     Route::post('/mijozadd', [ClintController::class, 'mijozadd'])->name('mijozadd');
     Route::post('/delete/{id}', [ClintController::class, 'delete'])->name('delete');
 });
-
-require __DIR__ . '/auth.php';

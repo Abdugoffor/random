@@ -197,9 +197,6 @@
             z-index: 1500;
         }
     </style>
-
-    @livewireStyles
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <!-- Custom styles for this template -->
     <link href="pricing.css" rel="stylesheet">
 </head>
@@ -226,8 +223,8 @@
                         href="{{ route('winners') }}">Победителей</a>
                     <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ route('mijoz') }}">Клиенты</a>
                     <a class="btn btn-outline-primary mr-2"
-                        href="{{ route('profile.edit') }}">Профиль</a>
-                    <form action="{{ route('logout') }}" method="post">
+                        href="{{ route('edit') }}">Профиль</a>
+                    <form action="{{ route('logaut') }}" method="post">
                         @csrf
                         <button type="submit" class="btn btn-outline-primary">Выход</button>
                     </form>
@@ -243,8 +240,6 @@
         </main>
 
     </div>
-
-    @livewireScripts
 </body>
 <script src="{{ asset('js/bootstrap.js') }}"></script>
 
