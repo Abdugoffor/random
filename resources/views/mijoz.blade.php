@@ -16,9 +16,9 @@
         @csrf
         <div class="input-group">
             {{-- <span class="input-group-text">Mijov Nomi va Telefoni</span> --}}
-            <input type="text" name="name" aria-label="First name" placeholder="Имя" class="form-control">
-            <input type="number" name="tel" aria-label="Last name"
-                placeholder="Телефон : 94 105 04 05" class="form-control">
+            <input type="text" name="name" aria-label="First name" placeholder="Имя" required class="form-control">
+            <input type="number" name="tel" aria-label="Last name" required placeholder="Телефон : 94 100 00 00"
+                class="form-control">
             <input type="submit" name="ok" value="Сохранять" aria-label="Last name" class="btn btn-outline-primary">
         </div>
     </form>
